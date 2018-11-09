@@ -85,7 +85,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
         objects.add(new ContentItem("Another Bar Chart",
                 "Implementation of a BarChart that only shows values at the bottom."));
         objects.add(new ContentItem("Multiple Lines Chart",
-                "A line chart with multiple DataSet objects. One color per DataSet."));
+                "A line chart with multiple DataSet objects. One color per DataSet. 分组的bar"));
         objects.add(new ContentItem("Multiple Bars Chart",
                 "A bar chart with multiple DataSet objects. One multiple colors per DataSet."));
         objects.add(new ContentItem(

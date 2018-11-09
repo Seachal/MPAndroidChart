@@ -79,6 +79,7 @@ public class CombinedChartActivity extends DemoBase {
         xAxis.setPosition(XAxisPosition.BOTH_SIDED);
         xAxis.setAxisMinimum(0f);
         xAxis.setGranularity(1f);
+//        x轴坐标刻度
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
