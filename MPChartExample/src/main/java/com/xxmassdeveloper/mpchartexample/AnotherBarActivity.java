@@ -4,9 +4,9 @@ package com.xxmassdeveloper.mpchartexample;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -27,11 +27,19 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
 
+import androidx.core.content.ContextCompat;
+
 public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListener {
 
     private BarChart chart;
     private SeekBar seekBarX, seekBarY;
     private TextView tvX, tvY;
+
+    private  float scalePercent = 4f/30f;
+
+//    //30个横坐标时，缩放4f是正好的。
+//    private float scalePercent = 4f/30f;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +73,11 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
         chart.setDrawBarShadow(false);
         chart.setDrawGridBackground(false);
 
+//平移
+        chart.setDragEnabled(true);
+
+//        chart.setTranslationX();
+
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
@@ -72,7 +85,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
         chart.getAxisLeft().setDrawGridLines(false);
 
         // setting data
-        seekBarX.setProgress(10);
+        seekBarX.setProgress(20);
         seekBarY.setProgress(100);
 
         // add a nice and smooth animation
@@ -115,6 +128,16 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
             chart.setData(data);
             chart.setFitBars(true);
         }
+
+
+
+        chart.getBarData().setBarWidth(0.5f);
+//        setChartData();
+
+        //设置一页最大显示个数为6，超出部分就滑动
+        float ratio = (float) values.size()/(float) 8;
+        //显示的时候是按照多大的比率缩放显示,1f表示不放大缩小
+        chart.zoom(ratio,1f,0,0);
 
         chart.invalidate();
     }
@@ -211,4 +234,16 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {}
+
+
+    private void setChartData(){
+        Matrix m = new Matrix();
+        m.postScale(scaleNum(20), 1f);//两个参数分别是x,y轴的缩放比例。例如：将x轴的数据放大为之前的1.5倍
+        chart.getViewPortHandler().refresh(m, chart, false);//将图表动画显示之前进行缩放
+    }
+
+    private float scaleNum(int xCount){
+        return xCount * scalePercent;
+    }
+
 }
