@@ -88,6 +88,7 @@ public class CombinedChartActivity extends DemoBase {
             }
         });
 
+        //<editor-fold desc="seachal annotaion: 把线、条、气泡等chart的数据添加到CombinedData中">
         CombinedData data = new CombinedData();
 
         data.setData(generateLineData());
@@ -100,6 +101,9 @@ public class CombinedChartActivity extends DemoBase {
         xAxis.setAxisMaximum(data.getXMax() + 0.25f);
 
         chart.setData(data);
+        //</editor-fold>
+        //  设置屏幕区域应该是一次最多可见的个数，超出的可以用手指滑动显示。参考：https://github.com/PhilJay/MPAndroidChart/issues/1188
+        chart.setVisibleXRangeMaximum(6);
         chart.invalidate();
     }
 

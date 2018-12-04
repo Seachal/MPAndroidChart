@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +32,8 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
 import java.util.Locale;
+
+import androidx.core.content.ContextCompat;
 
 public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarChangeListener,
         OnChartValueSelectedListener {
@@ -170,6 +171,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
             set4 = new BarDataSet(values4, "Company D");
             set4.setColor(Color.rgb(255, 102, 0));
 
+//          四个数据集合。
             BarData data = new BarData(set1, set2, set3, set4);
             data.setValueFormatter(new LargeValueFormatter());
             data.setValueTypeface(tfLight);
