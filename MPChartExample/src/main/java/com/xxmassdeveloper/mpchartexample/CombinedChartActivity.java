@@ -91,11 +91,16 @@ public class CombinedChartActivity extends DemoBase {
         //<editor-fold desc="seachal annotaion: 把线、条、气泡等chart的数据添加到CombinedData中">
         CombinedData data = new CombinedData();
 
-        data.setData(generateLineData());
-        data.setData(generateBarData());
-        data.setData(generateBubbleData());
-        data.setData(generateScatterData());
+
+
+
         data.setData(generateCandleData());
+        data.setData(generateScatterData());
+        data.setData(generateBarData());
+        data.setData(generateLineData());
+        data.setData(generateBubbleData());
+
+
         data.setValueTypeface(tfLight);
 
         xAxis.setAxisMaximum(data.getXMax() + 0.25f);
@@ -113,8 +118,9 @@ public class CombinedChartActivity extends DemoBase {
 
         ArrayList<Entry> entries = new ArrayList<>();
 
-        for (int index = 0; index < count; index++)
+        for (int index = 0; index < count; index++) {
             entries.add(new Entry(index + 0.5f, getRandom(15, 5)));
+        }
 
         LineDataSet set = new LineDataSet(entries, "Line DataSet");
         set.setColor(Color.rgb(240, 238, 70));
@@ -149,6 +155,8 @@ public class CombinedChartActivity extends DemoBase {
         set1.setColor(Color.rgb(60, 220, 78));
         set1.setValueTextColor(Color.rgb(60, 220, 78));
         set1.setValueTextSize(10f);
+        set1.setDrawValues(false);
+//        set1.setValueFormatter();
         set1.setAxisDependency(YAxis.AxisDependency.LEFT);
 
         BarDataSet set2 = new BarDataSet(entries2, "");

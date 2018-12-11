@@ -171,7 +171,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
             set4 = new BarDataSet(values4, "Company D");
             set4.setColor(Color.rgb(255, 102, 0));
 
-//          四个数据集合。
+            //          四个数据集合。
             BarData data = new BarData(set1, set2, set3, set4);
             data.setValueFormatter(new LargeValueFormatter());
             data.setValueTypeface(tfLight);
